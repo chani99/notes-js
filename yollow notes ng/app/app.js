@@ -1,0 +1,1 @@
+var YellowNote = angular.module('YellowNote', ['ngRoute']);
