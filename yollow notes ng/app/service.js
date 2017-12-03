@@ -1,19 +1,30 @@
-YellowNote.service('noteService', function($http) {
+YellowNote.service('noteService', function($rootScope) {
     const storageNotesKey = 'notes';
-    
-    this.setNote = function(note, onSuccess) {
-        var getStorage  = localStorage.getItem(storageNotesKey);
-        let notes = JSON.parse(getStorage) || [];
+
+    this.setNote = function(note) {
+        var notes = this.getNotes();
         notes.push(note);
-        var newstorage = JSON.stringify(notes);
-        localStorage.setItem(storageNotesKey, newstorage);
-        onSuccess(note);
+        this.setstorage(notes);
+        localStorage.setItem(storageNotesKey, JSON.stringify(notes));
+        $rootScope.$broadcast('note-added');
+
     }
 
-    this.getNotes = functoin(){
-        var getStorage  = localStorage.getItem(storageNotesKey);
-        let notes = JSON.parse(getStorage) || [];
+    this.getNotes = function() {
+        var notes = JSON.parse(localStorage.getItem(storageNotesKey)) || [];
         return notes;
+    }
+
+    this.setstorage = function(notes) {
+        localStorage.setItem(storageNotesKey, JSON.stringify(notes));
+    }
+
+    this.deleteoneNote = function(idnum) {
+        var notes = this.getNotes();
+        notes.splice(idnum, 1);
+        this.setstorage(notes);
+        $rootScope.$broadcast('note-added');
 
     }
+
 });

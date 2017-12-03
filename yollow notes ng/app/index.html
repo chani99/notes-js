@@ -17,9 +17,21 @@
 
 <body>
     NOTE PROJECT
-  
+
     <div ng-view></div>
- 
+
+    <hr>
+
+    <div ng-controller="allnotes">
+        <div class="note" ng-repeat='(key, value) in notes'>
+            <span class="deletebut btn" id={{$index}} ng-click="deletenote(this.id)">X</span>
+            <div class="txt">{{value.text}}</div>
+            <br>
+            <div class="date">{{value.date | date:"MM/dd/yyyy"}} </div>
+        </div>
+    </div>
+
+
 </body>
 
 </html>

@@ -1,5 +1,24 @@
 .note {
-  width: 120px;
-  height: 220px;
-  background-color: #ecd348;
+    width: 120px;
+    height: 220px;
+    background-color: #ecd348;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative;
+}
+
+.deletebut {
+    float: right;
+}
+
+.date {
+    position: absolute;
+    bottom: 10px;
+}
+
+.txt {
+    margin-top: 30px;
+    height: 160px;
 }
